@@ -1,0 +1,195 @@
+PART A: Operators
+Q1. Given a product price of 12,500, apply a discount of 10% and then add 18% GST. Calculate the final payable amount.
+
+price = 12500
+discount = price - price * 0.10
+gst = discount * 0.18 + discount
+print(gst)
+
+Q2. A customer places an order worth 8,000. Check whether the order qualifies for free delivery (free delivery if order value ≥ 10,000).
+
+order = 8000
+if order >= 10000:
+    print("Free Delivery.")
+else:
+    print("Not eligible for free delivery")
+
+Q3. You have two orders with amounts 45,000 and 72,000. Find which order has the higher value using comparison operators.
+
+a = 45000
+b = 72000
+if a > b:
+    print(a)
+else:
+    print(b)
+
+Q4. An order is eligible for a special offer if order amount is greater than 50,000 AND payment mode is 'Online'. Write logic using logical operators.
+
+order_amount = 50000
+pay_mode = "Online"
+if order_amount > 50000 and pay_mode == "Online":
+    print("Eligible for special order")
+else:
+    print("Not Eligible")
+
+Q5. Given total items = 37 and box capacity = 6, calculate how many full boxes are required and how many items remain.
+
+total_items = 37
+box_capacity = 6
+fullboxes_req = total_items // box_capacity
+items_remain = total_items % box_capacity
+print("Full Boxes:", fullboxes_req)
+print("Remaining Items:", items_remain)
+
+
+PART B: Flow Control – IF–ELSE
+Q6. Write a program to classify an order:
+- Amount > 100,000 → Premium Order
+- Amount between 50,000 and 100,000 → Standard Order
+- Else → Basic Order
+
+amount = int(input("Enter Amount:"))
+if amount > 100000:
+    print("Premium Order")
+elif amount >= 50000 and amount <= 100000:
+    print("Standard Order")
+else:
+    print("Basic Order")
+
+Q7. A product stock count is given. If stock is 0, print 'Out of Stock'. Otherwise, print 'Available'.
+
+stock = 4
+if stock == 0:
+    print("Out of Stock")
+else:
+    print("Available")
+
+Q8. A customer is eligible for a return only if the order is delivered AND return request is raised within 7 days. Write the conditional logic.
+
+order_delivered = True
+days_delivery = 5
+if order_delivered == True and days_delivery <= 7:
+    print("Eligible for return")
+else:
+    print("Not Eligible for return")
+
+Q9. Given a list of order amounts, print only the orders greater than 50,000.
+
+orders = [4000, 40000, 50000, 60000, 70000]
+for i in orders:
+    if i > 50000:
+        print(i)
+
+Q10. You have a list of products with prices. Apply 5% discount to each product and print the updated prices.
+
+prices = [1000, 2500, 5000, 12000]
+
+for price in prices:
+    discounted_price = price - (price * 0.05)
+    print(discounted_price)
+
+Q11. Iterate through a list of orders and count how many orders are above 1,00,000.
+
+orders = [100000, 200000, 300000, 5000, 6000, 7]
+count = 0
+for i in orders:
+    if i > 100000:
+        count += 1
+print(count)
+
+Q12. Simulate payment retry logic where the system retries payment a maximum of 3 times if payment fails.
+
+# Simulate payment retry logic
+
+max_retries = 3
+attempt = 0
+payment_success = False
+
+while attempt < max_retries:
+    attempt += 1
+    print(f"Payment attempt {attempt}")
+
+    # Simulate payment failure
+    payment_success = False
+
+    if payment_success:
+        print("Payment successful")
+        break
+    else:
+        print("Payment failed")
+
+if not payment_success:
+    print("Maximum retry limit reached. Payment unsuccessful.")
+
+
+Q13. Write a program that keeps checking order status until status becomes 'Delivered' or maximum 5 attempts are reached.
+
+# Order status checking simulation
+
+status = "Processing"
+attempts = 0
+max_attempts = 5
+
+while attempts < max_attempts:
+    attempts += 1
+    print("Attempt", attempts, "- Status:", status)
+
+    # Suppose status changes after 3 attempts
+    if attempts == 3:
+        status = "Delivered"
+
+    if status == "Delivered":
+        print("Order delivered successfully!")
+        break
+
+if status != "Delivered":
+    print("Order not delivered after 5 attempts.")
+
+Q14. Inventory restock check: Keep checking stock level every iteration and stop when stock becomes greater than 100.
+
+# Inventory restock check
+
+stock = 20   # initial stock
+attempts = 0
+
+while stock <= 100:
+    attempts += 1
+    print("Check", attempts, "- Stock level:", stock)
+
+    # Simulate restocking
+    stock += 30
+
+print("Stock is sufficient now:", stock)
+
+PART E: Mini Real-Time Challenge
+Q15. You are given a list of orders with order_id and amount.
+- Skip cancelled orders
+- Classify remaining orders as Premium or Regular
+- Count total premium orders
+
+# List of orders: (order_id, amount, status)
+orders = [
+    (101, 50000, "completed"),
+    (102, 120000, "completed"),
+    (103, 70000, "cancelled"),
+    (104, 250000, "completed"),
+    (105, 30000, "completed"),
+    (106, 150000, "cancelled")
+]
+
+premium_count = 0
+
+for order_id, amount, status in orders:
+
+    # Skip cancelled orders
+    if status == "cancelled":
+        continue
+
+    # Classify order
+    if amount > 100000:
+        print(order_id, "- Premium Order")
+        premium_count += 1
+    else:
+        print(order_id, "- Regular Order")
+
+print("Total Premium Orders:", premium_count)
